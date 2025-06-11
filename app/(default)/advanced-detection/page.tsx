@@ -23,7 +23,7 @@ interface DetectionResponse {
   error?: string;
 }
 
-const AdvancedDetectionPage: React.FC = () => {
+const PestDetectionPage: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   const [detections, setDetections] = useState<BoundingBox[]>([]);
@@ -235,11 +235,12 @@ const AdvancedDetectionPage: React.FC = () => {
     <div className="flex flex-col items-center justify-start py-2 bg-background text-foreground min-h-screen">
       <main className='container mx-auto px-4 py-8 w-full'>
         <header className="mb-8 text-center">
-          <h1 className='text-3xl font-bold tracking-tight text-primary sm:text-3xl md:text-5xl'>
-            Advanced Detection Interface
+          <h1 className="text-4xl tracking-tight font-extrabold text-foreground sm:text-5xl md:text-6xl">
+            <span className="block xl:inline">Pest & Disease</span>
+            <span className="block text-primary xl:inline"> Detection</span>
           </h1>
           <p className="mt-3 text-base text-muted-foreground sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-            Utilize advanced models for precise object detection with custom prompts.
+            Upload an image of a plant to detect pests and signs of disease.
           </p>
         </header>
 
@@ -273,4 +274,4 @@ const AdvancedDetectionPage: React.FC = () => {
   );
 };
 
-export default AdvancedDetectionPage;
+export default PestDetectionPage;

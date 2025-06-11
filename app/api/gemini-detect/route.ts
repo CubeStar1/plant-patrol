@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Gemini API key not configured" }, { status: 500 });
     }
 
-  const detectionPrompt = `Detect all distinct objects in the image. For each object, provide its bounding box as an array [ymin, xmin, ymax, xmax, object_label] where coordinates are scaled from 0 to 1000. Return all such bounding box arrays within a single JSON array. If multiple instances of the same object type exist, provide separate bounding boxes for each. Example: [[80,120,350,400,"cat"], [500,600,700,750,"dog"]]. If no objects are detected, return an empty array.`;
+    const detectionPrompt = `Detect all distinct objects in the image, with a special focus on identifying pests, insects, and signs of disease on plants. For each object, provide its bounding box as an array [ymin, xmin, ymax, xmax, object_label] where coordinates are scaled from 0 to 1000. The label should be specific (e.g., "aphid", "powdery mildew", "spider mite"). Return all such bounding box arrays within a single JSON array. If multiple instances of the same object type exist, provide separate bounding boxes for each. Example for plant analysis: [[80,120,350,400,"aphid"], [500,600,700,750,"leaf with rust"]]. The primary application is pest detection on plants, but also detect other objects if present. If no objects are detected, return an empty array.`;
 
   try {
     const formData = await req.formData();

@@ -25,7 +25,12 @@ const sidebarConfig: SidebarConfig = {
           title: "Object Detection",
           href: "/object-detection",
           icon: Icons.activity
-        }
+        },
+        {
+          title: "Pest Detection",
+          href: "/advanced-detection",
+          icon: Icons.bug
+        },
       ]
     },
     {

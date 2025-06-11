@@ -21,7 +21,8 @@ import {
     GitBranch,
     FileIcon,
     User,
-    Home
+    Home,
+    Bug
 } from "lucide-react"
 
 type IconType = {
@@ -49,7 +50,8 @@ const Icons: IconType = {
     fileIcon: FileIcon,
     layoutDashboard: LayoutDashboard,   
     user: User,
-    home: Home
+    home: Home,
+    bug: Bug
     
 }
 

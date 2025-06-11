@@ -17,9 +17,9 @@ export async function POST(request: Request) {
 
 	if (res.data.properties?.email_otp) {
 		const resendRes = await resend.emails.send({
-			from: `DormTrack <onboarding@${process.env.RESEND_DOMAIN}>`,
+			from: `YOLO Object Detection <onboarding@${process.env.RESEND_DOMAIN}>`,
 			to: [data.email],
-			subject: "DormTrack - Verify Email",
+			subject: "YOLO Object Detection - Verify Email",
 			react: SupaAuthVerifyEmail({
 				verificationCode: res.data.properties?.email_otp,
 			}),
