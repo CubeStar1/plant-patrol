@@ -39,7 +39,7 @@ export function Hero() {
       >
         <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           Real-Time {" "}
-          <span className="bg-gradient-to-r from-[#38bdf8] via-[#2dd4bf] to-[#0070F3] bg-clip-text text-transparent">Object Detection</span>{" "}
+          <span className="bg-gradient-to-r from-[#38bdf8] via-[#2dd4bf] to-[#0070F3] bg-clip-text text-transparent">Pest Detection</span>{" "}
           & Analytics Platform
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:mt-8">
@@ -82,14 +82,14 @@ export function Hero() {
       >
         <div className="relative rounded-2xl bg-gradient-to-b from-muted/50 to-muted p-2 ring-1 ring-foreground/10 backdrop-blur-3xl dark:from-muted/30 dark:to-background/80">
           {/* TODO: Replace with a relevant image for the YOLO object detection app */}
-          {/* <Image
-            src="/path/to/your-yolo-app-image.png" // Example: /landing/yolo-detection-interface.png
+          <Image
+            src="/landing/pest-detection-demo-1.png" // Example: /landing/yolo-detection-interface.png
             alt="YOLO Object Detection Interface"
             width={1200}
             height={800}
             quality={100}
             className="rounded-xl shadow-2xl ring-1 ring-foreground/10 transition-all duration-300"
-          /> */}
+          />
           <BorderBeam size={250} duration={12} delay={9} />
         </div>
       </motion.div>

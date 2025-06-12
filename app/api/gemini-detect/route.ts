@@ -91,7 +91,49 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Gemini API key not configured" }, { status: 500 });
     }
 
-    const detectionPrompt = `Detect all distinct objects in the image, with a special focus on identifying pests, insects, and signs of disease on plants. For each object, provide its bounding box as an array [ymin, xmin, ymax, xmax, object_label] where coordinates are scaled from 0 to 1000. The label should be specific (e.g., "aphid", "powdery mildew", "spider mite"). Return all such bounding box arrays within a single JSON array. If multiple instances of the same object type exist, provide separate bounding boxes for each. Example for plant analysis: [[80,120,350,400,"aphid"], [500,600,700,750,"leaf with rust"]]. The primary application is pest detection on plants, but also detect other objects if present. If no objects are detected, return an empty array.`;
+    const insectClasses = [
+      'Rice Leaf Folder', 'Rice Stem Borer', 'Rice Leaf Miner', 'Asian Corn Borer', 'Yellow Rice Borer',
+      'Rice Gall Midge', 'Rice Stem Fly', 'Brown Planthopper', 'White-Backed Planthopper', 'Small Brown Planthopper',
+      'Rice Water Weevil', 'Rice Leafhopper', 'Grain Thrips', 'Rice Ear Bug', 'White Grub', 'Mole Cricket', 'Wireworm',
+      'White-Edged Moth', 'Black Cutworm', 'Large Cutworm', 'Yellow Cutworm', 'Red Spider Mite', 'Corn Borer',
+      'Noctuid Moth', 'Aphid', 'White-Spotted Flower Chafer', 'Peach Fruit Borer', 'Long-Corned Cereal Aphid',
+      'English Grain Aphid', 'Oat Bird-Cherry Aphid', 'Wheat Blossom Midge', 'Wheat Curl Mite', 'Long-Legged Spider Mite',
+      'Wheat Stem Thrips', 'Wheat Sawfly', 'Wheat Blotch Leafminer', 'Beet Leafminer', 'Flea Beetle', 'Cabbage Looper',
+      'Beet Armyworm', 'Beet Leafhopper', 'Meadow Moth', 'Beet Weevil', 'Mulberry Leaf Beetle', 'Alfalfa Weevil',
+      'Alfalfa Looper', 'Alfalfa Plant Bug', 'Pasture Bug', 'Locust', 'Spanish Fly', 'Blister Beetle', 'Mylabris',
+      'Alfalfa Aphid', 'Bull Thistle Thrips', 'Thrips', 'Alfalfa Seed Chalcid', 'Eastern Cabbage Butterfly',
+      'Green Stink Bug', 'Slug Moth', 'Grape Phylloxera', 'Grape Erineum Mite', 'Grape Rust Mite',
+      'Ten-Spotted Lady Beetle', 'Broad Mite', 'Comstock Mealybug', 'Grape Clearwing Moth', 'Grape Hawk Moth',
+      'Spotted Lanternfly', 'Tiger Longhorn Beetle', 'Green Leafhopper', 'Plant Bug', 'Greenhouse Whitefly',
+      'Two-Spotted Leafhopper', 'Citrus Swallowtail', 'Citrus Red Mite', 'Citrus Rust Mite', 'Cottony Cushion Scale',
+      'Arrowhead Scale', 'Red Wax Scale', 'Brown Soft Scale', 'Black Scale', 'Mealybug', 'Citrus Psyllid',
+      'Oriental Fruit Fly', 'Citrus Fruit Fly', 'Mediterranean Fruit Fly', 'Cotton Leafworm', 'Eriworm',
+      'Citrus Leafminer Parasitoid', 'Citrus Aphid', 'Small Citrus Aphid', 'Apple Woolly Aphid', 'Mango Thrips',
+      'Litchi Leaf Gall Midge', 'Tea White Moth Wax Cicada', 'Green Wax Scale', 'Mango Leaf-Cutting Weevil',
+      'Mango Shoot Borer', 'Mango Flat-Headed Leafhopper', 'Stem Borer', 'Mango Seed Weevil', 'Leafhopper'
+    ];
+
+    const detectionPrompt = `
+Detect all distinct objects in the image. Your primary focus is to identify pests, insects, and signs of disease on plants.
+
+For each detected object, provide its bounding box as an array: [ymin, xmin, ymax, xmax, object_label].
+The coordinates (ymin, xmin, ymax, xmax) must be scaled from 0 to 1000.
+The object_label should be specific (e.g., "aphid", "powdery mildew", "spider mite").
+
+Return all such bounding box arrays within a single JSON array.
+If multiple instances of the same object type exist, provide separate bounding boxes for each.
+
+Example for plant analysis: [[80,120,350,400,"aphid"], [500,600,700,750,"leaf with rust"]]
+
+This application is primarily for pest detection on plants. However, also detect other common objects if they are present in the image.
+
+If no objects are detected, return an empty array: [].
+
+Here is a list of possible insect classes to help guide your detection:
+${JSON.stringify(insectClasses, null, 2)}
+
+Ensure your output is ONLY the JSON array of bounding boxes.
+    `;
 
   try {
     const formData = await req.formData();

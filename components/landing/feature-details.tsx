@@ -7,45 +7,45 @@ const features = [
     title: "Live Video Stream Processing",
     description: "Connect your cameras or video feeds directly to our platform. Our system processes live streams in real-time, applying YOLO detection to identify and track objects as they appear.",
     // TODO: Replace with actual image path
-    image: "/landing/yolo-placeholder-1.png", 
+    image: "/landing/yoj-demo.png", 
     // TODO: Replace with actual image path (or use same as above if no dark mode variant)
-    darkImage: "/landing/yolo-placeholder-1-dark.png", 
+    darkImage: "/landing/pest-detection-demo-1.png", 
     alt: "Live video stream processing with object detection overlays",
   },
   {
     title: "Flexible YOLO Model Management",
     description: "Easily switch between various pre-trained YOLO models (v5, v7, v8, etc.) or upload and deploy your own custom-trained models tailored to specific detection tasks.",
     // TODO: Replace with actual image path
-    image: "/landing/yolo-placeholder-2.png", 
+    image: "/landing/pest-detection-demo-2.png", 
     // TODO: Replace with actual image path
-    darkImage: "/landing/yolo-placeholder-2-dark.png", 
+    darkImage: "/landing/pest-detection-demo-2.png", 
     alt: "Interface showing YOLO model selection and customization options",
   },
   {
     title: "Insightful Detection Analytics",
     description: "Visualize detection performance through an interactive dashboard. Track key metrics like objects detected per class, detection confidence levels, FPS, and model inference times.",
     // TODO: Replace with actual image path
-    image: "/landing/yolo-placeholder-3.png", 
+    image: "/landing/yoj-demo.png", 
     // TODO: Replace with actual image path
-    darkImage: "/landing/yolo-placeholder-3-dark.png", 
+    darkImage: "/landing/pest-detection-demo-3.png", 
     alt: "Dashboard displaying object detection analytics and performance metrics",
   },
   {
     title: "Advanced Object Tracking & Logging",
     description: "Our system can track individual objects across frames, assigning unique IDs. All detection events, including object class, coordinates, and timestamps, are logged for review and export.",
     // TODO: Replace with actual image path
-    image: "/landing/yolo-placeholder-4.png", 
+    image: "/landing/pest-detection-demo-2.png", 
     // TODO: Replace with actual image path
-    darkImage: "/landing/yolo-placeholder-4-dark.png", 
+    darkImage: "/landing/pest-detection-demo-2.png", 
     alt: "Visualization of object tracking with logged detection data",
   },
   {
     title: "Customizable Alerts & Notifications",
     description: "Set up custom alerts based on specific detection events or patterns. Receive real-time notifications via email, SMS, or webhook integrations when critical objects are detected.",
     // TODO: Replace with actual image path
-    image: "/landing/yolo-placeholder-5.png", 
+    image: "/landing/pest-detection-demo-1.png", 
     // TODO: Replace with actual image path
-    darkImage: "/landing/yolo-placeholder-5-dark.png", 
+    darkImage: "/landing/pest-detection-demo-1.png", 
     alt: "Alert configuration and notification system interface",
   }
 ]
