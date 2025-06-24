@@ -14,10 +14,10 @@ export default function ObjectDetectionPage() {
       <main className='container mx-auto px-4 py-8 w-full'>
         <header className="mb-8 text-center">
           <h1 className='text-3xl font-bold tracking-tight text-primary sm:text-3xl md:text-5xl'>
-            Object Detection Interface
+            Real Time Pest Detection Interface
           </h1>
           <p className="mt-3 text-base text-muted-foreground sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-            Detect objects in real-time using your webcam.
+            Detect pests in real-time using your webcam.
           </p>
         </header>
         {/* <DynamicYolo /> */}

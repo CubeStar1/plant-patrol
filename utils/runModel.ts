@@ -3,10 +3,16 @@ import { InferenceSession, Tensor } from "onnxruntime-web";
 export async function createModelCpu(
     url: string
 ): Promise<InferenceSession> {
-    return await InferenceSession.create(url, {
-        executionProviders: ["wasm"],
-        graphOptimizationLevel: "all",
-    });
+    console.log(url);
+    try {
+        return await InferenceSession.create(url, {
+            executionProviders: ["wasm"],
+            graphOptimizationLevel: "all",
+        });
+    } catch (e) {
+        console.error("ONNX Runtime failed to create session:", e);
+        throw new Error(`Failed to create model. See console for details.`);
+    }
 }
 
 export async function runModel(

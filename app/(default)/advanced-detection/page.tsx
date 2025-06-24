@@ -2,10 +2,12 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import { createSupabaseBrowser } from '@/lib/supabase/client';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { InfoCircledIcon, ExclamationTriangleIcon } from '@radix-ui/react-icons'; // Removed CubeIcon as it's not used after header change
 import AdvancedDetectionControls from '@/components/advanced-detection/advanced-detection-controls'; 
 import AdvancedDetectionDisplay from '@/components/advanced-detection/advanced-detection-display'; 
+import useUser from '@/hooks/use-user';
 // Card, CardContent, CardHeader, CardTitle, Textarea might be removed if no longer used after this change
 // For now, assume they might be used elsewhere or handle their removal in a separate cleanup step if confirmed unused.
 
@@ -24,6 +26,7 @@ interface DetectionResponse {
 }
 
 const PestDetectionPage: React.FC = () => {
+  const supabase = createSupabaseBrowser();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
   const [detections, setDetections] = useState<BoundingBox[]>([]);
@@ -219,7 +222,34 @@ const PestDetectionPage: React.FC = () => {
       } else {
         setDetections(result.boxes || []);
         setApiRawResponse(result.rawResponse || null);
-        // Drawing is handled by the useEffect hook watching `detections` and `imagePreviewUrl`
+
+        // Save to Supabase
+        const saveDetection = async () => {
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user && imageFile) {
+            const fileName = `${user.id}/${Date.now()}-${imageFile.name}`;
+            const { error: uploadError } = await supabase.storage
+              .from('agrolens_images')
+              .upload(fileName, imageFile);
+
+            if (uploadError) {
+              console.error('Error uploading image to Supabase:', uploadError);
+              return; 
+            }
+
+            const { data: { publicUrl } } = supabase.storage
+              .from('agrolens_images')
+              .getPublicUrl(fileName);
+
+            await supabase.from('pest_detections').insert({
+              user_id: user.id,
+              image_url: publicUrl,
+              detections: result.boxes,
+            });
+          }
+        };
+
+        saveDetection();
       }
     } catch (err) {
       console.error("Detection API error:", err);

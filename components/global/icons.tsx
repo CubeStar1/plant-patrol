@@ -22,7 +22,8 @@ import {
     FileIcon,
     User,
     Home,
-    Bug
+    Bug,
+    Leaf
 } from "lucide-react"
 
 type IconType = {
@@ -51,7 +52,8 @@ const Icons: IconType = {
     layoutDashboard: LayoutDashboard,   
     user: User,
     home: Home,
-    bug: Bug
+    bug: Bug,
+    leaf: Leaf
     
 }
 

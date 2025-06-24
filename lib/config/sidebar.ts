@@ -22,7 +22,7 @@ const sidebarConfig: SidebarConfig = {
           icon: Icons.layoutDashboard
         },
         {
-          title: "Object Detection",
+          title: "Real Time Detection",
           href: "/object-detection",
           icon: Icons.activity
         },
@@ -31,6 +31,11 @@ const sidebarConfig: SidebarConfig = {
           href: "/advanced-detection",
           icon: Icons.bug
         },
+        {
+          title: "Plant Health",
+          href: "/plant-health",
+          icon: Icons.leaf
+        },
       ]
     },
     {
@@ -38,8 +43,8 @@ const sidebarConfig: SidebarConfig = {
       items: [
         {
           title: "Detection Log",
-          href: "/logs",
-          icon: Icons.home
+          href: "/history",
+          icon: Icons.history
         },
         {
           title: "Analytics",
