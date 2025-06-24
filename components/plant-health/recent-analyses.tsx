@@ -17,7 +17,7 @@ async function RecentPlantHealthAnalyses() {
     .select('*')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
-    .limit(3);
+    .limit(10);
 
   return (
     <div className="mt-12">

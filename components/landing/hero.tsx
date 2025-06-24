@@ -25,7 +25,7 @@ export function Hero() {
           className="group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800"
         >
         <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
-          <span>🎯 Real-time YOLO Object Detection</span>
+          <span>🎯 Real-time Pest Detection</span>
           <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
         </AnimatedShinyText>
         </Link>
@@ -39,18 +39,18 @@ export function Hero() {
       >
         <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
           Real-Time {" "}
-          <span className="bg-gradient-to-r from-[#38bdf8] via-[#2dd4bf] to-[#0070F3] bg-clip-text text-transparent">Pest Detection</span>{" "}
+          <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">Pest Detection</span>{" "}
           & Analytics Platform
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:mt-8">
-          Harness the power of YOLO for lightning-fast and accurate object detection. Analyze results, track performance, and gain insights from your visual data.
+          Harness the power of YOLO for lightning-fast and accurate pest detection. Analyze results, track performance, and gain insights from your visual data.
         </p>
         
         <div className="mt-8 flex items-center justify-center gap-4 sm:mt-10">
-          <Link href="/object-detection">
+          <Link href="/dashboard">
             <ShimmerButton 
               className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
-              background="linear-gradient(to right, #0070F3, #38bdf8)"
+              background="linear-gradient(to right, #10B981, #34D399)"
             >
               <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white">
                 Start Live Detection
@@ -58,11 +58,11 @@ export function Hero() {
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 sm:w-5 sm:h-5" />
             </ShimmerButton>
           </Link>
-          <Link href="/detection-log">
+          <Link href="/history">
             <div>
               <ShimmerButton 
                 className="flex items-center gap-2 px-6 py-3 text-base sm:text-lg"
-                background="linear-gradient(to right, #7928CA, #FF0080)"
+                background="linear-gradient(to right, #334155, #0f172a)"
               >
                 <span className="whitespace-pre-wrap text-center font-medium leading-none tracking-tight text-white">
                   View Detection Log
@@ -83,8 +83,8 @@ export function Hero() {
         <div className="relative rounded-2xl bg-gradient-to-b from-muted/50 to-muted p-2 ring-1 ring-foreground/10 backdrop-blur-3xl dark:from-muted/30 dark:to-background/80">
           {/* TODO: Replace with a relevant image for the YOLO object detection app */}
           <Image
-            src="/landing/pest-detection-demo-1.png" // Example: /landing/yolo-detection-interface.png
-            alt="YOLO Object Detection Interface"
+            src="/landing/pp-dashboard.png" // Example: /landing/yolo-detection-interface.png
+            alt="PlantPatrol Dashboard"
             width={1200}
             height={800}
             quality={100}

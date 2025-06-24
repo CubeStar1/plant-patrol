@@ -85,7 +85,7 @@ async function fileToGenerativePart(file: File) {
 }
 
 export async function POST(req: NextRequest) {
-    const MODEL_NAME = "gemini-2.0-flash"; // Or "gemini-pro-vision"
+    const MODEL_NAME = "gemini-2.5-flash"; // Or "gemini-pro-vision"
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
         return NextResponse.json({ error: "Gemini API key not configured" }, { status: 500 });
@@ -181,6 +181,6 @@ Ensure your output is ONLY the JSON array of bounding boxes.
     console.error("Error calling Gemini API:", error);
     // Check if the error object has a more specific message from the API
     const message = error.response?.data?.error?.message || error.message || "Internal Server Error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "API Error" }, { status: 500 });
   }
 }

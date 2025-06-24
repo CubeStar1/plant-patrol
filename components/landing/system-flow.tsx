@@ -58,7 +58,7 @@ export function SystemFlow() {
       >
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Our Detection Process{" "}
-          <span className="bg-gradient-to-r from-[#38bdf8] via-[#2dd4bf] to-[#0070F3] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
             Explained
           </span>
         </h2>
@@ -107,8 +107,8 @@ export function SystemFlow() {
         <div className="relative rounded-2xl bg-gradient-to-b from-muted/50 to-muted p-2 ring-1 ring-foreground/10 backdrop-blur-3xl dark:from-muted/30 dark:to-background/80">
           {/* TODO: Replace with an image illustrating the YOLO detection system architecture */}
           <Image
-            src="/landing/yoj-demo.png"
-            alt="YOLO Object Detection System Architecture"
+            src="/landing/pp-realtime.png"
+            alt="PlantPatrol Real-time Pest Detection System Architecture"
             width={1200}
             height={800}
             quality={100}

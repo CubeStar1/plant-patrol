@@ -10,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CombinedHistoryData } from "@/lib/types/database-types";
+import Link from "next/link";
 
 const columns: ColumnDef<CombinedHistoryData>[] = [
   {
@@ -34,7 +35,12 @@ const columns: ColumnDef<CombinedHistoryData>[] = [
   {
     accessorKey: "id",
     header: "Submission ID",
-    cell: ({ row }) => <div className="truncate w-32 font-mono text-xs">{row.getValue("id")}</div>,
+    cell: ({ row }) => <Button variant="link"><Link href={`/plant-health/${row.getValue("id")}`}>{row.getValue("id")?.toString().slice(0, 8) + '...'}</Link></Button>,
+  },
+  {
+    accessorKey: "image_url",
+    header: "Image",
+    cell: ({ row }) => <img src={row.getValue("image_url")} alt="Submission" className="w-16 h-16 object-cover" />,
   },
 ];
 

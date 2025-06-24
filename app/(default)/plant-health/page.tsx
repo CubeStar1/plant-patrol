@@ -35,26 +35,9 @@ export default function PlantHealthPage() {
     setIsAnalyzing(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.append('file', selectedImage);
-
     try {
-      const response = await fetch('/api/plant-health', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Analysis failed');
-      }
-
-      const data: KindwiseResponse = await response.json();
-
-      const fileExt = selectedImage.name.split('.').pop();
+      // 1. Upload image to Supabase Storage
       const fileName = `${user.id}/${Date.now()}-${selectedImage.name}`;
-
-
       const { error: uploadError } = await supabase.storage
         .from('agrolens_images')
         .upload(fileName, selectedImage);
@@ -63,13 +46,31 @@ export default function PlantHealthPage() {
         throw new Error(`Failed to upload image: ${uploadError.message}`);
       }
 
+      // 2. Get public URL
       const { data: { publicUrl } } = supabase.storage
         .from('agrolens_images')
         .getPublicUrl(fileName);
 
+      // 3. Send URL to API for analysis
+      const response = await fetch('/api/plant-health', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageUrl: publicUrl }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Analysis failed');
+      }
+
+      const analysisData: KindwiseResponse = await response.json();
+
+      // 4. Save analysis result to the database
       const { data: savedData, error: dbError } = await supabase
         .from('plant_health_analyses')
-        .insert({ user_id: user.id, image_url: publicUrl, result: data })
+        .insert({ user_id: user.id, image_url: publicUrl, result: analysisData })
         .select('id')
         .single();
 
@@ -77,6 +78,7 @@ export default function PlantHealthPage() {
         throw new Error(`Failed to save analysis: ${dbError.message}`);
       }
 
+      // 5. Redirect to the results page
       if (savedData) {
         router.push(`/plant-health/${savedData.id}`);
       }

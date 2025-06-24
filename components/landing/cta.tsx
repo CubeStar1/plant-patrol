@@ -20,10 +20,10 @@ export function CTA() {
       >
         <h2 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           Start Detecting{" "}
-          <span className="text-primary dark:text-primary/90">Objects Now</span>
+          <span className="text-primary dark:text-primary/90">Pests Now</span>
         </h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground sm:mt-8">
-          Experience the power and speed of our YOLO object detection platform. Upload your video or connect a live stream to start identifying objects in real-time.
+          Experience the power and speed of our YOLO object detection platform. Upload your video or connect a live stream to start identifying pests in real-time.
         </p>
         <div className="mt-8 sm:mt-10 flex justify-center">
           <Link href="/object-detection">

@@ -26,7 +26,7 @@ export default async function HistoryPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <PageHeader title="Submission History" />
+      <PageHeader title="Detection History" />
       <div className="mt-6">
         <HistoryClientWrapper 
           healthData={healthData || []} 

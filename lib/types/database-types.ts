@@ -1,5 +1,5 @@
 // Base interface for a single bounding box detection
-interface BoundingBox {
+export interface BoundingBox {
   xmin: number;
   ymin: number;
   xmax: number;

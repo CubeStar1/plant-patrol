@@ -81,7 +81,7 @@ export function Header({ config }: HeaderProps) {
                 : "h-16"
             )}>
               <Link href="/" className="group relative flex items-center gap-3">
-                <Image src={config.brand.icon} alt={config.brand.title} width={24} height={24} />
+                <Image src={config.brand.icon} alt={config.brand.title} width={40} height={40} />
                 <span className="font-medium tracking-tight">{config.brand.title}</span>
               </Link>
 

@@ -17,8 +17,8 @@ export interface HeaderConfig {
 
 export const headerConfig: HeaderConfig = {
   brand: {
-    title: "YOLO Detection",
-    icon: "/globe.svg"
+    title: "PlantPatrol",
+    icon: "/plantpatrol-logo.png"
   },
   navigationLinks: [
     {
@@ -31,23 +31,15 @@ export const headerConfig: HeaderConfig = {
     },
     {
       href: "/object-detection",
-      label: "Object Detection"
+      label: "Real-time Detection"
     },
     {
-      href: "/logs",
+      href: "/history",
       label: "Detection Log"
     },
     {
       href: "/analytics",
       label: "Analytics"
     },
-    {
-      href: "/profile",
-      label: "Profile"
-    },
-    {
-      href: "/settings",
-      label: "Settings"
-    }
   ]
 }

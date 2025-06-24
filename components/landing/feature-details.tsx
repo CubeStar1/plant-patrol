@@ -4,49 +4,45 @@ import { ArrowRight } from "lucide-react"
 
 const features = [
   {
-    title: "Live Video Stream Processing",
-    description: "Connect your cameras or video feeds directly to our platform. Our system processes live streams in real-time, applying YOLO detection to identify and track objects as they appear.",
-    // TODO: Replace with actual image path
-    image: "/landing/yoj-demo.png", 
-    // TODO: Replace with actual image path (or use same as above if no dark mode variant)
-    darkImage: "/landing/pest-detection-demo-1.png", 
-    alt: "Live video stream processing with object detection overlays",
+    title: "Real-time Pest Detection",
+    description: "Connect your cameras or video feeds to our platform. Our system processes live streams in real-time, applying advanced YOLO models to identify and track pests as they appear.",
+    image: "/landing/pp-realtime.png",
+    darkImage: "/landing/pp-realtime.png",
+    alt: "Live video stream processing with pest detection overlays",
   },
   {
-    title: "Flexible YOLO Model Management",
-    description: "Easily switch between various pre-trained YOLO models (v5, v7, v8, etc.) or upload and deploy your own custom-trained models tailored to specific detection tasks.",
+    title: "Advanced Plant Health Analysis",
+    description: "Upload images of your plants to get an instant health assessment. Our AI-powered system identifies common diseases and provides detailed information, including treatment suggestions.",
     // TODO: Replace with actual image path
-    image: "/landing/pest-detection-demo-2.png", 
+    image: "/landing/pp-disease.png",
     // TODO: Replace with actual image path
-    darkImage: "/landing/pest-detection-demo-2.png", 
-    alt: "Interface showing YOLO model selection and customization options",
+    darkImage: "/landing/pp-disease.png",
+    alt: "Interface showing plant health analysis results with disease information",
   },
   {
-    title: "Insightful Detection Analytics",
-    description: "Visualize detection performance through an interactive dashboard. Track key metrics like objects detected per class, detection confidence levels, FPS, and model inference times.",
-    // TODO: Replace with actual image path
-    image: "/landing/yoj-demo.png", 
-    // TODO: Replace with actual image path
-    darkImage: "/landing/pest-detection-demo-3.png", 
-    alt: "Dashboard displaying object detection analytics and performance metrics",
+    title: "Insightful Analytics Dashboard",
+    description: "Visualize detection data through an interactive dashboard. Track key metrics like pest and disease frequency, detection confidence levels, and analyze trends over time to make informed decisions.",
+    image: "/landing/pp-dashboard.png",
+    darkImage: "/landing/pp-dashboard.png",
+    alt: "Dashboard displaying pest and disease detection analytics and performance metrics",
   },
   {
-    title: "Advanced Object Tracking & Logging",
-    description: "Our system can track individual objects across frames, assigning unique IDs. All detection events, including object class, coordinates, and timestamps, are logged for review and export.",
+    title: "Comprehensive Detection History",
+    description: "Access a detailed log of all past detections. Review images, analysis results, and timestamps for both pest and plant health scans. Filter and export data for reporting and further analysis.",
     // TODO: Replace with actual image path
-    image: "/landing/pest-detection-demo-2.png", 
+    image: "/landing/pp-logs.png",
     // TODO: Replace with actual image path
-    darkImage: "/landing/pest-detection-demo-2.png", 
-    alt: "Visualization of object tracking with logged detection data",
+    darkImage: "/landing/pp-logs.png",
+    alt: "History page showing a log of past pest and disease detections",
   },
   {
-    title: "Customizable Alerts & Notifications",
-    description: "Set up custom alerts based on specific detection events or patterns. Receive real-time notifications via email, SMS, or webhook integrations when critical objects are detected.",
+    title: "Customizable Real-time Alerts",
+    description: "Set up custom alerts for specific pest or disease detections. Receive instant notifications via email, allowing you to take immediate action and protect your crops.",
     // TODO: Replace with actual image path
-    image: "/landing/pest-detection-demo-1.png", 
+    image: "/landing/pp-alerts.png",
     // TODO: Replace with actual image path
-    darkImage: "/landing/pest-detection-demo-1.png", 
-    alt: "Alert configuration and notification system interface",
+    darkImage: "/landing/pp-alerts.png",
+    alt: "Alert configuration and a sample email notification for a new detection",
   }
 ]
 
@@ -61,7 +57,7 @@ export function FeatureDetails() {
       >
         <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           Core Platform{" "}
-          <span className="bg-gradient-to-r from-[#38bdf8] via-[#2dd4bf] to-[#0070F3] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
             Capabilities
           </span>
         </h2>

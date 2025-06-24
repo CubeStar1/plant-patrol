@@ -19,35 +19,26 @@ export interface FooterConfig {
 
 export const footerConfig: FooterConfig = {
   brand: {
-    title: "YOLO Detection",
-    description: "Advanced Object Detection Platform"
+    title: "PlantPatrol",
+    description: "Intelligent Pest & Disease Detection"
   },
   sections: [
     {
-      title: "Features",
+      title: "Platform",
       links: [
-        { href: "/object-detection", label: "Live Detection" },
-        { href: "/analytics/detection-log", label: "Detection Log" },
-        { href: "/analytics/object-insights", label: "Object Insights" },
-        { href: "/custom-models", label: "Custom Models" } // Example future link
+        { href: "/object-detection", label: "Real-time Detection" },
+        { href: "/plant-health", label: "Plant Health Analysis" },
+        { href: "/dashboard", label: "Analytics Dashboard" },
+        { href: "/history", label: "Detection History" }
       ]
     },
     {
-      title: "Use Cases",
+      title: "Company",
       links: [
-        { href: "/use-cases/security", label: "Security & Surveillance" },
-        { href: "/use-cases/retail", label: "Retail Analytics" },
-        { href: "/use-cases/industrial", label: "Industrial Automation" },
-        { href: "/use-cases/traffic", label: "Traffic Management" }
-      ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { href: "#", label: "Documentation" },
-        { href: "#", label: "API Reference" },
-        { href: "#", label: "Help Center" },
-        { href: "#", label: "Security" }
+        { href: "#", label: "About Us" },
+        { href: "#", label: "Careers" },
+        { href: "#", label: "Contact" },
+        { href: "#", label: "Blog" }
       ]
     },
     {
@@ -55,10 +46,8 @@ export const footerConfig: FooterConfig = {
       links: [
         { href: "#", label: "Privacy Policy" },
         { href: "#", label: "Terms of Service" },
-        { href: "#", label: "Cookie Policy" },
-        { href: "#", label: "GDPR" }
       ]
     }
   ],
-  copyright: `© ${new Date().getFullYear()} YOLO Detection Platform. All rights reserved.`
+  copyright: `© ${new Date().getFullYear()} PlantPatrol. All rights reserved.`
 }

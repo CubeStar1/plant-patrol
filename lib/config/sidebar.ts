@@ -3,7 +3,7 @@ import { SidebarConfig } from "@/components/global/app-sidebar";
 
 const sidebarConfig: SidebarConfig = {
   brand: {
-    title: "YOLO Detection",
+    title: "PlantPatrol",
     icon: Icons.shield,
     href: "/"
   },
@@ -15,11 +15,6 @@ const sidebarConfig: SidebarConfig = {
           title: "Home",
           href: "/",
           icon: Icons.home
-        },
-        {
-          title: "Dashboard",
-          href: "/dashboard",
-          icon: Icons.layoutDashboard
         },
         {
           title: "Real Time Detection",
@@ -42,6 +37,11 @@ const sidebarConfig: SidebarConfig = {
       label: "Analytics",
       items: [
         {
+          title: "Dashboard",
+          href: "/dashboard",
+          icon: Icons.layoutDashboard
+        },
+        {
           title: "Detection Log",
           href: "/history",
           icon: Icons.history
@@ -49,7 +49,7 @@ const sidebarConfig: SidebarConfig = {
         {
           title: "Analytics",
           href: "/analytics",
-          icon: Icons.layoutDashboard
+          icon: Icons.activity
         }
       ]
     },

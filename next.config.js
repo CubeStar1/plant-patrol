@@ -8,6 +8,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
+    ],
+  },
   webpack: (config, { }) => {
 
     config.resolve.extensions.push(".ts", ".tsx");
