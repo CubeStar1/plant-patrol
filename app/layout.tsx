@@ -8,8 +8,8 @@ import { Toaster } from "@/components/ui/toaster"
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Yolov8 Object Detection',
-  description: 'Yolov8 Object Detection',
+  title: 'PlantPatrol',
+  description: 'PlantPatrol',
 };
 
 export default function RootLayout({

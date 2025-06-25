@@ -5,8 +5,8 @@ import Footer from "@/components/global/footer"
 import { footerConfig } from "@/lib/config/footer"
 
 export const metadata: Metadata = {
-  title: "NextJS Template",
-  description: "NextJS Template",
+  title: "PlantPatrol",
+  description: "PlantPatrol",
 }
 
 export default function DashboardLayout({

@@ -4,8 +4,8 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Breadcrumbs } from "@/components/navigation/breadcrumbs"
 
 export const metadata: Metadata = {
-  title: "YOLO Object Detection",
-  description: "YOLO Object Detection",
+  title: "PlantPatrol",
+  description: "PlantPatrol",
 }
 
 export default function DashboardLayout({
