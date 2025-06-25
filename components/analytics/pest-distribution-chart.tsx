@@ -1,6 +1,6 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Cell } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { PestDetection } from '@/lib/types/database-types';
@@ -15,6 +15,8 @@ const chartConfig = {
     color: "hsl(var(--chart-4))",
   },
 } satisfies ChartConfig;
+
+const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#a4de6c", "#d0ed57", "#ffc658"];
 
 export default function PestDistributionChart({ pestData }: PestDistributionChartProps) {
   const pestCounts = pestData
@@ -53,7 +55,10 @@ export default function PestDistributionChart({ pestData }: PestDistributionChar
               />
               <XAxis dataKey="count" type="number" hide />
               <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-              <Bar dataKey="count" fill="var(--color-count)" radius={5} layout="vertical">
+              <Bar dataKey="count" layout="vertical" radius={5}>
+                {chartData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>

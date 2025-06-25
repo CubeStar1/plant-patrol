@@ -41,5 +41,9 @@ export const headerConfig: HeaderConfig = {
       href: "/analytics",
       label: "Analytics"
     },
+    {
+      href: "/about",
+      label: "About"
+    }
   ]
 }
