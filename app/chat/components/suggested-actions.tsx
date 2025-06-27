@@ -7,7 +7,7 @@ import { memo } from "react";
 interface SuggestedActionsProps {
   chatId: string;
   append: (message: Message) => Promise<string | null | undefined>;
-  handleSubmit: (e: React.FormEvent, value: string) => void;
+  handleSubmit: (e: React.FormEvent<Element>, value: string) => void;
 }
 function PureSuggestedActions({
   chatId,
@@ -16,28 +16,28 @@ function PureSuggestedActions({
 }: SuggestedActionsProps) {
   const suggestedActions = [
     {
-      title: "What are the",
-      label: "highest packages offered?",
+      title: "Analyze Plant Health",
+      label: "Get insights from recent plant health analyses",
       action:
-        "What are the highest packages offered in placements so far in 2025?",
+        "Analyze the latest plant health data and provide insights about plant conditions and health metrics.",
     },
     {
-      title: "How many companies",
-      label: "visited this year?",
+      title: "Pest Detection Analysis",
+      label: "Review recent pest detection results",
       action:
-        "How many companies have visited for campus placements this year in 2025?",
+        "Analyze the latest pest detection data and provide insights about pest types and their prevalence.",
     },
     {
-      title: "Which department has",
-      label: "the most placements?",
+      title: "Compare Plant Data",
+      label: "Compare health and pest data",
       action:
-        "Which department has the highest number of placements this year in 2025?",
+        "Compare recent plant health analyses with pest detection results to identify patterns and correlations.",
     },
     {
-      title: "What is the average",
-      label: "package for CSE?",
+      title: "Health Trends",
+      label: "Analyze plant health trends",
       action:
-        "What is the average package offered to CSE students this year in 2025?",
+        "Analyze historical plant health data to identify trends and patterns over time.",
     },
   ];
   return (

@@ -855,22 +855,19 @@ export const ThumbDownIcon = ({ size = 16 }: { size?: number }) => (
     />
   </svg>
 );
-export const ChevronDownIcon = ({ size = 16 }: { size?: number }) => (
+export const ChevronDownIcon = ({ size = 16, className = "" }) => (
   <svg
-    height={size}
-    strokeLinejoin="round"
-    viewBox="0 0 16 16"
     width={size}
-    style={{
-      color: "currentcolor",
-    }}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
   >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M12.0607 6.74999L11.5303 7.28032L8.7071 10.1035C8.31657 10.4941 7.68341 10.4941 7.29288 10.1035L4.46966 7.28032L3.93933 6.74999L4.99999 5.68933L5.53032 6.21966L7.99999 8.68933L10.4697 6.21966L11 5.68933L12.0607 6.74999Z"
-      fill="currentColor"
-    />
+    <path d="m6 9 6 6 6-6" />
   </svg>
 );
 export const SparklesIcon = ({ size = 16 }: { size?: number }) => (
@@ -1177,3 +1174,41 @@ export const FullscreenIcon = ({ size = 16 }: { size?: number }) => (
     ></path>
   </svg>
 );
+
+// Add these to your icons file if you don't have them
+
+
+export const SearchIcon = ({ size = 16, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.35-4.35" />
+  </svg>
+);
+
+export const CheckCircleIcon = ({ size = 16, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+    <path d="m9 11 3 3L22 4" />
+  </svg>
+);
+

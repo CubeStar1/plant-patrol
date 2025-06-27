@@ -1,4 +1,4 @@
-import { generateText, CoreMessage } from 'ai';
+import { streamText, CoreMessage } from 'ai';
 import { getSystemPrompt } from '@/lib/prompts/system-prompt';
 import { querySupabaseTool } from '@/lib/tools/query-supabase';
 import { createOpenAI } from '@ai-sdk/openai';
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     const { messages }: { messages: CoreMessage[] } = await req.json();
     const systemPrompt = await getSystemPrompt(user.id);
 
-    const { text } = await generateText({
+    const result = streamText({
       model: openai('gpt-4o-mini'),
       system: systemPrompt,
       messages,
@@ -35,7 +35,8 @@ export async function POST(req: Request) {
       maxSteps: 5, // allow up to 5 steps
     });
 
-    return Response.json({ text });
+    // Stream the response back to the client so `useChat` can consume it
+    return result.toDataStreamResponse();
   } catch (error: any) {
     console.error('[API] Error:', error);
     return new Response(JSON.stringify({ error: error.message || 'An unexpected error occurred.' }), {

@@ -1,11 +1,14 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { marked } from "marked";
 import type * as React from "react";
-import { Suspense, isValidElement, memo, useMemo } from "react";
+import { Suspense, isValidElement, memo, useMemo, useEffect, useState } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+
 const DEFAULT_PRE_BLOCK_CLASS =
   "my-4 overflow-x-auto w-fit rounded-xl bg-zinc-950 text-zinc-50 dark:bg-zinc-900 border border-border p-4";
+
 const extractTextContent = (node: React.ReactNode): string => {
   if (typeof node === "string") {
     return node;
@@ -24,66 +27,107 @@ const extractTextContent = (node: React.ReactNode): string => {
   }
   return "";
 };
+
 interface HighlightedPreProps extends React.HTMLAttributes<HTMLPreElement> {
   language: string;
 }
+
 const HighlightedPre = memo(
-  async ({ children, className, language, ...props }: HighlightedPreProps) => {
-    const { codeToTokens, bundledLanguages } = await import("shiki");
-    const code = extractTextContent(children);
-    if (!(language in bundledLanguages)) {
+  ({ children, className, language, ...props }: HighlightedPreProps) => {
+    const [highlightedCode, setHighlightedCode] = useState<JSX.Element | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      let isMounted = true;
+
+      const highlightCode = async () => {
+        try {
+          const { codeToTokens, bundledLanguages } = await import("shiki");
+          const code = extractTextContent(children);
+          
+          if (!(language in bundledLanguages)) {
+            if (isMounted) {
+              setHighlightedCode(
+                <pre {...props} className={cn(DEFAULT_PRE_BLOCK_CLASS, className)}>
+                  <code className="whitespace-pre-wrap">{children}</code>
+                </pre>
+              );
+              setIsLoading(false);
+            }
+            return;
+          }
+
+          const { tokens } = await codeToTokens(code, {
+            lang: language as keyof typeof bundledLanguages,
+            themes: {
+              light: "github-dark",
+              dark: "github-dark",
+            },
+          });
+
+          if (isMounted) {
+            setHighlightedCode(
+              <pre {...props} className={cn(DEFAULT_PRE_BLOCK_CLASS, className)}>
+                <code className="whitespace-pre-wrap">
+                  {tokens.map((line, lineIndex) => (
+                    <span key={`line-${lineIndex}`}>
+                      {line.map((token, tokenIndex) => {
+                        const style =
+                          typeof token.htmlStyle === "string"
+                            ? undefined
+                            : token.htmlStyle;
+                        return (
+                          <span key={`token-${tokenIndex}`} style={style}>
+                            {token.content}
+                          </span>
+                        );
+                      })}
+                      {lineIndex !== tokens.length - 1 && "\n"}
+                    </span>
+                  ))}
+                </code>
+              </pre>
+            );
+            setIsLoading(false);
+          }
+        } catch (error) {
+          console.error('Error highlighting code:', error);
+          if (isMounted) {
+            setHighlightedCode(
+              <pre {...props} className={cn(DEFAULT_PRE_BLOCK_CLASS, className)}>
+                <code className="whitespace-pre-wrap">{children}</code>
+              </pre>
+            );
+            setIsLoading(false);
+          }
+        }
+      };
+
+      highlightCode();
+
+      return () => {
+        isMounted = false;
+      };
+    }, [children, language, className, props]);
+
+    if (isLoading) {
       return (
         <pre {...props} className={cn(DEFAULT_PRE_BLOCK_CLASS, className)}>
           <code className="whitespace-pre-wrap">{children}</code>
         </pre>
       );
     }
-    const { tokens } = await codeToTokens(code, {
-      lang: language as keyof typeof bundledLanguages,
-      themes: {
-        light: "github-dark",
-        dark: "github-dark",
-      },
-    });
-    return (
-      <pre {...props} className={cn(DEFAULT_PRE_BLOCK_CLASS, className)}>
-        <code className="whitespace-pre-wrap">
-          {tokens.map((line, lineIndex) => (
-            <span
-              key={`line-${
-                // biome-ignore lint/suspicious/noArrayIndexKey: Needed for react key
-                lineIndex
-              }`}
-            >
-              {line.map((token, tokenIndex) => {
-                const style =
-                  typeof token.htmlStyle === "string"
-                    ? undefined
-                    : token.htmlStyle;
-                return (
-                  <span
-                    key={`token-${
-                      // biome-ignore lint/suspicious/noArrayIndexKey: Needed for react key
-                      tokenIndex
-                    }`}
-                    style={style}
-                  >
-                    {token.content}
-                  </span>
-                );
-              })}
-              {lineIndex !== tokens.length - 1 && "\n"}
-            </span>
-          ))}
-        </code>
-      </pre>
-    );
+
+    return highlightedCode;
   },
 );
+
 HighlightedPre.displayName = "HighlightedPre";
+
 interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
   language: string;
 }
+
 const CodeBlock = ({
   children,
   language,
@@ -104,7 +148,9 @@ const CodeBlock = ({
     </Suspense>
   );
 };
+
 CodeBlock.displayName = "CodeBlock";
+
 const components: Partial<Components> = {
   h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="mt-2 scroll-m-20 text-4xl font-bold" {...props}>
@@ -258,14 +304,17 @@ const components: Partial<Components> = {
   },
   pre: ({ children }) => <>{children}</>,
 };
+
 function parseMarkdownIntoBlocks(markdown: string): string[] {
   const tokens = marked.lexer(markdown);
   return tokens.map((token) => token.raw);
 }
+
 interface MarkdownBlockProps {
   content: string;
   className?: string;
 }
+
 const MemoizedMarkdownBlock = memo(
   ({ content, className }: MarkdownBlockProps) => {
     return (
@@ -284,12 +333,15 @@ const MemoizedMarkdownBlock = memo(
     return true;
   },
 );
+
 MemoizedMarkdownBlock.displayName = "MemoizedMarkdownBlock";
+
 interface MarkdownContentProps {
   content: string;
   id: string;
   className?: string;
 }
+
 export const MarkdownContent = memo(
   ({ content, id, className }: MarkdownContentProps) => {
     const blocks = useMemo(() => parseMarkdownIntoBlocks(content), [content]);
@@ -305,4 +357,5 @@ export const MarkdownContent = memo(
     ));
   },
 );
+
 MarkdownContent.displayName = "MarkdownContent";

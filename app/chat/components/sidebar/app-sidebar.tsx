@@ -6,7 +6,9 @@ import Link from "next/link";
 import { PlusIcon } from "../icons";
 import { SidebarHistory } from "./sidebar-history";
 import { SidebarUserNav } from "./sidebar-user-nav";
+import Image from "next/image"
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -38,12 +40,20 @@ export function AppSidebar({ user }: AppSidebarProps) {
               }}
               className="flex flex-row gap-3 items-center"
             >
+              <Image
+                src="/plantpatrol-logo.png"
+                alt="PlantPatrol Logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full"
+                />
               <span className="text-lg font-semibold px-2 hover:bg-muted rounded-md cursor-pointer">
-                RVCE Placements
+                PlantPatrol
               </span>
             </Link>
             <Tooltip>
               <TooltipTrigger asChild>
+                {/* <Link href="/chat"> */}
                 <Button
                   variant="ghost"
                   type="button"
@@ -56,6 +66,8 @@ export function AppSidebar({ user }: AppSidebarProps) {
                 >
                   <PlusIcon />
                 </Button>
+                {/* </Link> */}
+
               </TooltipTrigger>
               <TooltipContent align="end">New Chat</TooltipContent>
             </Tooltip>

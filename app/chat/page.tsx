@@ -7,7 +7,7 @@ export default async function NewChatPage() {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    return redirect("/login");
+    return redirect("/signin");
   }
 
   // Create a new conversation
