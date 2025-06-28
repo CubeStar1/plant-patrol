@@ -3,6 +3,7 @@
 import { PestDetection, PlantHealthAnalysis } from '@/lib/types/database-types';
 import SummaryCard from './summary-card';
 import DetectionCard from './detection-card';
+import VoiceAssistantDock from './VoiceAssistantDock';
 
 interface DashboardClientWrapperProps {
   healthData: PlantHealthAnalysis[];
@@ -56,40 +57,43 @@ const DashboardClientWrapper = ({ healthData, pestData }: DashboardClientWrapper
   ];
 
   return (
-    <div className="space-y-8">
-      {/* Summary Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {statsToDisplay.map((stat) => (
-          <SummaryCard
-            key={stat.title}
-            title={stat.title}
-            value={stat.value}
-            icon={stat.icon}
-            description={stat.description}
-            cardClassName={stat.cardClassName}
-          />
-        ))}
-      </div>
+    <div className="flex flex-col h-full">
+      <div className="flex-grow space-y-8">
+        {/* Summary Cards */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {statsToDisplay.map((stat) => (
+            <SummaryCard
+              key={stat.title}
+              title={stat.title}
+              value={stat.value}
+              icon={stat.icon}
+              description={stat.description}
+              cardClassName={stat.cardClassName}
+            />
+          ))}
+        </div>
 
-      {/* Detections Grid */}
-      <div className="space-y-8">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Pest Detections</h2>
-          <div className="grid gap-6 mt-4 md:grid-cols-2">
-            {pestData.map((detection) => (
-              <DetectionCard key={detection.id} detection={detection} type="pest" />
-            ))}
+        {/* Detections Grid */}
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Pest Detections</h2>
+            <div className="grid gap-6 mt-4 md:grid-cols-2">
+              {pestData.map((detection) => (
+                <DetectionCard key={detection.id} detection={detection} type="pest" />
+              ))}
+            </div>
           </div>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Disease Detections</h2>
-          <div className="grid gap-6 mt-4 md:grid-cols-2">
-            {healthData.map((analysis) => (
-              <DetectionCard key={analysis.id} detection={analysis} type="disease" />
-            ))}
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">Disease Detections</h2>
+            <div className="grid gap-6 mt-4 md:grid-cols-2">
+              {healthData.map((analysis) => (
+                <DetectionCard key={analysis.id} detection={analysis} type="disease" />
+              ))}
+            </div>
           </div>
         </div>
       </div>
+      <VoiceAssistantDock />
     </div>
   );
 };

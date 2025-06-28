@@ -50,7 +50,12 @@ const sidebarConfig: SidebarConfig = {
           title: "Analytics",
           href: "/analytics",
           icon: Icons.activity
-        }
+        },
+        {
+          title: "Chat",
+          href: "/chat",
+          icon: Icons.activity
+        },
       ]
     },
     {

@@ -34,8 +34,8 @@ export const headerConfig: HeaderConfig = {
       label: "Real-time Detection"
     },
     {
-      href: "/history",
-      label: "Detection Log"
+      href: "/chat",
+      label: "Chat"
     },
     {
       href: "/analytics",
