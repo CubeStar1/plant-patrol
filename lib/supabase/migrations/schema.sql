@@ -4,7 +4,6 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
   result jsonb;
-  -- Trim trailing semicolons from the query to prevent syntax errors
   clean_query text := rtrim(query, ';');
 BEGIN
   EXECUTE 'SELECT jsonb_agg(t) FROM (' || clean_query || ') t' INTO result;

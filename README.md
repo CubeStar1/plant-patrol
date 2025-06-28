@@ -32,6 +32,12 @@ All pest detections and plant health analyses are automatically saved. Review hi
 
 ![Detection Logs](./public/landing/pp-logs.png)
 
+## Chat with PlantPatrol
+
+PlantPatrol also features a chat interface that allows users to interact with the system and receive personalized recommendations based on their specific needs.
+
+![Chat](./public/landing/pp-chat.png)
+
 ### Alert System
 
 Receive instant alerts when pests are detected or plant health issues are identified. The system sends email notifications to the user's registered email address, providing immediate insights and recommendations.
@@ -102,13 +108,6 @@ To run the model efficiently in the browser, the trained PyTorch model was conve
     ```
     This command generates `yolov11n_custom.ort` and `yolov11n_custom.optimized.onnx`. Either of these can be used in the web application.
 
-## Web Interface
-
-The application provides a clean and intuitive interface for performing object detection.
-
-*   **Input Options**: Users can choose between using their live webcam feed, uploading a static image, or uploading a video file.
-*   **Real-time Detection**: The model processes the input in real-time (for webcam and video) and overlays bounding boxes on detected pests.
-*   **Controls & Performance**: The interface includes controls to start/stop processing, switch models, and view performance metrics like inference time and frames per second (FPS).
 
 ## Getting Started
 
@@ -117,8 +116,8 @@ Follow these steps to set up and run the project locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/CubeStar1/yolo-object-detection.git
-cd yolo-object-detection
+git clone https://github.com/CubeStar1/plant-patrol.git
+cd plant-patrol
 ```
 
 ### 2. Install Dependencies
@@ -127,9 +126,20 @@ cd yolo-object-detection
 npm install
 ```
 
-### 3. Set Up Environment Variables
+### 3. Set Up Supabase Database
 
-Create a `.env.local` file in the root of the project and add the following environment variables. You will need to get these keys from their respective services.
+- Create a new Supabase project at [Supabase](https://supabase.com/).
+- Copy the migration file contents from `lib/supabase/migrations` to your Supabase project SQL editor.
+- Run the migrations.
+- Get the Supabase URL, anon key, and admin key from your Supabase project settings.
+
+### 4. Set Up Environment Variables
+
+Create a `.env` file in the root of the project and add the following environment variables. You will need to get these keys from their respective services.
+
+```bash
+cp env.example .env
+```
 
 ```env
 # Supabase
@@ -153,14 +163,18 @@ NEXT_PUBLIC_GOOGLE_API_KEY=<your_google_api_key>
 NEXT_PUBLIC_KINDWISE_API_KEY=<your_kindwise_api_key>
 
 
+# OpenAI
+NEXT_PUBLIC_OPENAI_API_KEY=<your_openai_api_key>
+
+
 ```
 
-### 4. Run the Development Server
+### 5. Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-### 5. Open the Application
+### 6. Open the Application
 
 Open your web browser and navigate to `http://localhost:3000` to view the application.
