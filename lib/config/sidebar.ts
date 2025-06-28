@@ -58,22 +58,6 @@ const sidebarConfig: SidebarConfig = {
         },
       ]
     },
-    {
-        label: "System & Profile",
-        items: [
-          {
-            title: "Profile",
-            href: "/profile",
-            icon: Icons.user
-          },
-          {
-            title: "Settings",
-            href: "/settings",
-            icon: Icons.settings
-          }
-        ]
-      }
-    
   ]
 }
 
